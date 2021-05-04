@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from 'reactstrap';
+import DishDetail from './DishdetailComponent'
 
 class Menu extends Component {
 
@@ -9,6 +10,11 @@ class Menu extends Component {
         this.state = {
             selectedDish: null
         }
+        console.log('menu components constructos is invoked');
+    }
+
+    componentDidMount() {
+        console.log('menu components componentDidMount is invoked');
     }
 
     onDishSelect(dish){
@@ -50,13 +56,19 @@ class Menu extends Component {
 
         });
 
+        console.log('menu components render is invoked');
+
         return ( 
             <div className="container">
                 <div className='row'>
                     {menu}
                 </div>
+
+                <DishDetail selectedDish={this.state.selectedDish} />
+                
                 <div className="row">
-                    {this.renderDish(this.state.selectedDish)}
+                    {/*{this.renderDish(this.state.selectedDish)}*/}
+                    
                 </div>
             </div>
         );
