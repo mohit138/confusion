@@ -4,6 +4,7 @@ import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from 're
 class DishDetail extends Component{
     constructor(props){
         super(props);
+        
     }
 
     
@@ -14,8 +15,8 @@ class DishDetail extends Component{
                 return(
                     
                     <div key={com.id} className=" list-unstyled">
-                        <div className="mt-1">{com.comment}</div>
-                        <div className="mt-1">--{com.author},{" "}{com.date}</div>
+                        <div className="mt-3">{com.comment}</div>
+                        <div className="mt-3">--{com.author},{" "}{new Intl.DateTimeFormat('en-US', {year:'numeric',month:'short',day:'2-digit'}).format(new Date(Date.parse(com.date)))}</div>
                     </div>
                     
                 );
@@ -37,6 +38,7 @@ class DishDetail extends Component{
 
     renderDish(dish){
         if(dish!=null) {
+            console.log("in render img sec ", dish)
             return(
                 <div className="col-12 col-md-5 m-1">
                     <Card>
@@ -57,11 +59,13 @@ class DishDetail extends Component{
     }
 
     render(){
-        
+        // console.log(this.props.dish);
         return (
-           <div className="row">
-               {this.renderDish(this.props.selectedDish)}
-               {this.renderComments(this.props.selectedDish)}
+            <div className="container">
+                <div className="row">
+                {this.renderDish(this.props.dish)}
+                {this.renderComments(this.props.dish)}
+                </div>
             </div>
         );
     }
