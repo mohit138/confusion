@@ -4,10 +4,16 @@ import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from 're
 class DishDetail extends Component{
     constructor(props){
         super(props);
-        
+        // console.log(" dish detail component constructor invokrd..");
     }
 
-    
+    componentDidMount(){
+        // console.log(" dish detail component componentDidMount invokrd..");
+    }
+
+    componentDidUpdate(){
+        // console.log(" dish detail component componentDidUpdate invokrd..");
+    }
 
     renderComments(dish){
         if(dish!=null){
@@ -59,6 +65,7 @@ class DishDetail extends Component{
     }
 
     render(){
+        // console.log(" dish detail component render invokrd..");
         // console.log(this.props.dish);
         return (
             <div className="container">
