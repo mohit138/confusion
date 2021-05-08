@@ -1,23 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from 'reactstrap';
 
-class DishDetail extends Component{
-    constructor(props){
-        super(props);
-        // console.log(" dish detail component constructor invokrd..");
-    }
-
-    componentDidMount(){
-        // console.log(" dish detail component componentDidMount invokrd..");
-    }
-
-    componentDidUpdate(){
-        // console.log(" dish detail component componentDidUpdate invokrd..");
-    }
-
-    renderComments(dish){
-        if(dish!=null){
-            const disp = dish.comments.map((com)=>{
+    function RenderComments({comments}){
+        
+            const disp = comments.map((com)=>{
                 return(
                     
                     <div key={com.id} className=" list-unstyled">
@@ -34,17 +20,10 @@ class DishDetail extends Component{
                     {disp}
                 </div>
             );
-        }
-        else{
-            return (
-                <div></div>
-            );
-        }
     }
 
-    renderDish(dish){
+    function RenderDish({dish}){
         if(dish!=null) {
-            console.log("in render img sec ", dish)
             return(
                 <div className="col-12 col-md-5 m-1">
                     <Card>
@@ -64,18 +43,27 @@ class DishDetail extends Component{
         }
     }
 
-    render(){
+    const DishDetail = (props) => {
         // console.log(" dish detail component render invokrd..");
         // console.log(this.props.dish);
+        if(props.dish != null){
         return (
             <div className="container">
                 <div className="row">
-                {this.renderDish(this.props.dish)}
-                {this.renderComments(this.props.dish)}
+                <RenderDish dish={props.dish}/>
+                <RenderComments comments={props.dish.comments}/>
                 </div>
             </div>
         );
+        }
+        else{
+            return(
+                <div className="container">
+                <div className="row">
+                </div>
+            </div>
+            );
+        }
     }
-}
 
 export default DishDetail;
