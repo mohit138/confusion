@@ -23,8 +23,9 @@ const minLength = (len) => (val) => (val) && (val.length>=len);
         }
 
         handleSubmit(values){
-            console.log("form values obtained are: " + JSON.stringify(values));
-            alert("form values obtained are: " + JSON.stringify(values));
+            this.toggleModal();
+            this.props.addComment(this.props.dishId, values.rating, values.author, values.comment );
+            
         }
 
         toggleModal(){
@@ -91,7 +92,7 @@ const minLength = (len) => (val) => (val) && (val.length>=len);
         }
     }
 
-    function RenderComments({comments}){
+    function RenderComments({comments, addComment, dishId}){
         
             const disp = comments.map((com)=>{
                 return(
@@ -108,7 +109,7 @@ const minLength = (len) => (val) => (val) && (val.length>=len);
                 <div className="col-12 col-md-5 m-1">
                     <h4>Comments</h4>
                     {disp}
-                    <CommentForm />
+                    <CommentForm dishId={dishId} addComment={addComment} />
                 </div>
             );
     }
@@ -153,7 +154,9 @@ const minLength = (len) => (val) => (val) && (val.length>=len);
                 </div>
                 <div className="row">
                 <RenderDish dish={props.dish}/>
-                <RenderComments comments={props.comments}/>
+                <RenderComments comments={props.comments}
+                    addComment={props.addComment}
+                    dishId={props.dish.id}/>
                 </div>
             </div>
         );
